@@ -30,6 +30,8 @@ function bookPurchasing(buku, disc, tax, stock, order)
     }
 
     console.group();
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     console.log('Judul Buku                    :', buku.judul);
     console.log('Harga Barang                  : Rp.', price);
     console.log('Discount                      :', disc,'%');
@@ -38,18 +40,33 @@ function bookPurchasing(buku, disc, tax, stock, order)
     console.log('Harga Barang dipotong pajak   : Rp.', amntPjk);
     console.log('Total Pembelian               : Rp.', order);
     console.log('Harga total                   : Rp.', Total);
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
     console.groupEnd();
-     
+    
     return result;
  }
 
- bookPurchasing({judul: 'terbang', harga: 10000, printing_status: true},10, 10, 5, 4);
- bookPurchasing({judul: 'Sherlock Holmes', harga: 80000, printing_status: true},10, 10, 5, 3);
- bookPurchasing({judul: 'Detective Conan', harga: 95000, printing_status: true},10, 10, 5, 5);
- bookPurchasing({judul: 'Naruto', harga: 18000, printing_status: true},10, 10, 5, 2);
- bookPurchasing({judul: 'Overlord', harga: 50000, printing_status: true},10, 10, 5, 1);
- bookPurchasing({judul: 'Harry Potter', harga: 100000, printing_status: true},10, 10, 5, 10);
- bookPurchasing({judul: 'Lord of The Ring', harga: 120000, printing_status: true},10, 10, 5, 8);
- bookPurchasing({judul: 'Narnia', harga: 97000, printing_status: true}, 10, 10, 5, 2);
+ function Pengkreditan(result, cicil)
+ {
+    kreditPerBulan = result/cicil;
+    PembayaranKredit = [];
+    for(let i = 0; i < cicil; i++)
+    {
+        PembayaranKredit.push(
+            {
+                cicil: i+1,
+                harga: kreditPerBulan
+
+            }
+        )
+    }
+    return PembayaranKredit;
+ }
+
+ console.log(Pengkreditan(bookPurchasing({judul: 'terbang', harga: 10000, printing_status: true},10, 10, 5, 4), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Sherlock Holmes', harga: 80000, printing_status: true},10, 10, 5, 3), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Detective Conan', harga: 95000, printing_status: true},10, 10, 5, 5), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Naruto', harga: 18000, printing_status: true},10, 10, 5, 2), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Overlord', harga: 50000, printing_status: true},10, 10, 5, 1), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Harry Potter', harga: 100000, printing_status: true},10, 10, 5, 10), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Lord of The Ring', harga: 120000, printing_status: true},10, 10, 5, 8), 6));
+ console.log(Pengkreditan(bookPurchasing({judul: 'Narnia', harga: 97000, printing_status: true}, 10, 10, 5, 2), 6));
